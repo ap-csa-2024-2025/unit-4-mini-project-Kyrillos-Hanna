@@ -25,7 +25,7 @@ public class Main
 		String vowels = "aeiou";
 		int removedVowels = 0;
 		int repeatedConsonants = 0;
-		int charactersSaved = input.length();
+		int charactersSaved = 0;
 		
 		for (int i = 1; i < input.length(); i++) {
 			if (vowels.indexOf(input.substring(i, i +1)) == -1 || input.substring(i - 1, i).equals(" ") ) {
@@ -41,7 +41,7 @@ public class Main
 
 		charactersSaved = input.length() - output.length();
 
-		System.out.println("Algorithm 1");
+		System.out.println("\nAlgorithm 1");
 		System.out.println("Vowels removed: " + removedVowels);
 		System.out.println("Repeats removed: " + repeatedConsonants);
 		System.out.println("Algorithm 1 message: " + output);
@@ -60,11 +60,22 @@ public class Main
 		for (int i = 0; i < input.length(); i++) {
 			String currentLetter = input.substring(i, i + 1);
 			
-			if (!(currentLetter.equals(" ") && output.indexOf(currentLetter) == -1)) {
-				
+			if (!currentLetter.equals(" ") && output.indexOf(currentLetter) == -1) {
+				unique++;
+				count = 0;
 
-				
+				for (int j = 0; j < input.length(); j++) {
+					String countLetter = input.substring(j, j + 1);
+					if (currentLetter.equals(countLetter)) {
+						count++;
+					}
+				}
+				output = output + count + currentLetter;
 			}
 		}
+		System.out.println("\nAlgorithm 2");
+		System.out.println("Unique characters found: " + unique); 
+		System.out.println("Algorithm 1 message: " + output);
+		System.out.println("Algorithm 2 characters saved: " + (input.length() - output.length()));
 	}
 }
