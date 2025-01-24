@@ -52,30 +52,37 @@ public class Main
 	// This method should implement Algorithm 2 and print all neccessary data
 	public static void algorithm2(String input)
 	{
-		input = input.toLowerCase();
+		String lowercase = input.toLowerCase();
 		String output = "";
 		int count = 0;
 		int unique = 0;
+		
+		while(lowercase.indexOf(" ") != -1) {
+			lowercase = lowercase.substring(0, lowercase.indexOf(" ")) + lowercase.substring(lowercase.indexOf(" ") + 1);
+		}
 
-		for (int i = 0; i < input.length(); i++) {
-			String currentLetter = input.substring(i, i + 1);
+		for (int i = 0; i < lowercase.length(); i++) {
+			String currentLetter = lowercase.substring(i, i + 1);
 			
-			if (!currentLetter.equals(" ") && output.indexOf(currentLetter) == -1) {
+			if (output.indexOf(currentLetter) == -1) {
 				unique++;
 				count = 0;
-
-				for (int j = 0; j < input.length(); j++) {
-					String countLetter = input.substring(j, j + 1);
-					if (currentLetter.equals(countLetter)) {
+		
+				for (int j = 0; j < lowercase.length(); j++) {
+					if (currentLetter.equals(lowercase.substring(j, j + 1))) {
 						count++;
 					}
 				}
 				output = output + count + currentLetter;
 			}
 		}
+
+
 		System.out.println("\nAlgorithm 2");
 		System.out.println("Unique characters found: " + unique); 
 		System.out.println("Algorithm 1 message: " + output);
 		System.out.println("Algorithm 2 characters saved: " + (input.length() - output.length()));
 	}
 }
+
+
